@@ -16,7 +16,7 @@ class PostItem extends StatelessWidget
         (
         elevation: 30.0,
         shadowColor: Colors.black54,
-        color: Colors.white,
+        color: Theme.of(context).disabledColor,
         borderRadius: new BorderRadius.circular(6.0),
         child: new Padding
           (
@@ -25,10 +25,10 @@ class PostItem extends StatelessWidget
             (
             // leading: new Image.asset('res/${post.postImg}'),
             leading: new Image.asset('assets/img/login_logo.png'),
-            title: new Text(post.postName, style: new TextStyle(color: Colors.black, fontWeight: FontWeight.w700, fontSize: 20.0)),
+            title: new Text(post.postName, style: new TextStyle(fontWeight: FontWeight.w700, fontSize: 20.0)),
             subtitle: new Material
               (
-              color: Colors.green,
+              color: Theme.of(context).accentColor,
               borderRadius: new BorderRadius.circular(8.0),
               child: new Container
                 (
@@ -38,13 +38,13 @@ class PostItem extends StatelessWidget
                     post.price - post.price.truncate() > 0
                         ? '\$${post.price.toStringAsFixed(2)}'
                         : '\$${post.price.truncate()}',
-                    style: new TextStyle(color: Colors.white)),
+                   ),
               ),
             ),
             trailing: new IconButton
               (
               onPressed: () {},
-              icon: new Icon(Icons.delete, color: Colors.black26),
+              icon: new Icon(Icons.delete, color: Theme.of(context).primaryColor),
             ),
           ),
         ),

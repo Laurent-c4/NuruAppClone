@@ -23,17 +23,22 @@ class AppThemes {
   const AppThemes();
 
   static final darkTheme = ThemeData(
-    scaffoldBackgroundColor: Colors.grey.shade900,
-    primaryColor: Colors.black,
+    scaffoldBackgroundColor: Color(0xFF121212),
+    primaryColor: Colors.orange[200],
+    accentColor: Colors.purple[200],
+    disabledColor: Color(0xFF1D1D1D),
     colorScheme: ColorScheme.dark(),
-    iconTheme: IconThemeData(color: Color(0xFFF6B21A), opacity: 0.8),
+    iconTheme: IconThemeData(color:Colors.orange[200]),
+    bottomAppBarColor: Colors.black38
   );
 
   static final lightTheme = ThemeData(
-    scaffoldBackgroundColor: Colors.white,
-    primaryColor: Colors.white,
+    scaffoldBackgroundColor: Color(0xFFE5E5E5),
+    primaryColor: Color(0xFFF6B21A),
     colorScheme: ColorScheme.light(),
-    iconTheme: IconThemeData(color: Color(0xFFF6B21A), opacity: 0.8),
+    disabledColor: Colors.white,
+    iconTheme: IconThemeData(color: Color(0xFFF6B21A)),
+    bottomAppBarColor: Colors.white60
   );
 
   static const Color loginGradientStart = Color(0xFFfbab66);

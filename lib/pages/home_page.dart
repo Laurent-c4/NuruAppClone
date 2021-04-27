@@ -11,51 +11,6 @@ import 'package:nuru_clone_app/provider/theme_provider.dart';
 
 import '../widgets/navigationbar_widget.dart';
 
-// class HomePage extends StatelessWidget {
-//   // @override
-//   // Widget build(BuildContext context) => Scaffold(
-//   //       appBar: AppBar(
-//   //         iconTheme: Theme.of(context).iconTheme,
-//   //         backgroundColor: Colors.transparent,
-//   //         leading: Icon(Icons.menu),
-//   //         title: Text(MyApp.title),
-//   //         elevation: 0,
-//   //         actions: [
-//   //           ChangeThemeButtonWidget(),
-//   //         ],
-//   //       ),
-//   //       body: ProfileWidget(),
-//   //       extendBody: true,
-//   //       bottomNavigationBar: NavigationBarWidget(),
-//   //     );
-//
-//   // @override
-//   // Widget build(BuildContext context) {
-//   //   final text = Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark
-//   //       ? 'This is a demonstration of Dark Theme'
-//   //       : 'This is a demonstration of Light Theme';
-//   //
-//   //   return Scaffold(
-//   //     appBar: AppBar(
-//   //       backgroundColor: Colors.orange,
-//   //       title: Text(MyApp.title),
-//   //       actions: [
-//   //         ChangeThemeButtonWidget(),
-//   //       ],
-//   //     ),
-//   //     body: Center(
-//   //       child: Text(
-//   //         'Hello $text!',
-//   //         style: TextStyle(
-//   //           fontSize: 32,
-//   //           fontWeight: FontWeight.bold,
-//   //         ),
-//   //       ),
-//   //     ),
-//   //   );
-//   // }
-// }
-
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
@@ -82,9 +37,13 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
           iconTheme: Theme.of(context).iconTheme,
-          backgroundColor: Colors.transparent,
-          leading: Icon(Icons.menu),
-          title: Text(MyApp.title),
+          backgroundColor: Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark
+              ? Theme.of(context).disabledColor
+              : Theme.of(context).primaryColor,
+          // leading: Icon(Icons.menu),
+          title: Text(MyApp.title, style: TextStyle(color: Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark
+              ? Theme.of(context).primaryColor
+              : Colors.black,),),
           elevation: 0,
           actions: [
             ChangeThemeButtonWidget(),
@@ -105,6 +64,7 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       bottomNavigationBar: BottomNavyBar(
+        backgroundColor: Theme.of(context).bottomAppBarColor,
         selectedIndex: _currentIndex,
         onItemSelected: (index) {
           setState(() => _currentIndex = index);
@@ -113,19 +73,19 @@ class _HomePageState extends State<HomePage> {
         items: <BottomNavyBarItem>[
           BottomNavyBarItem(
               title: Text('My Posts'),
-              icon: Icon(Icons.home)
+              icon: Icon(Icons.home),activeColor: Theme.of(context).primaryColor
           ),
           BottomNavyBarItem(
               title: Text('New Post'),
-              icon: Icon(Icons.add)
+              icon: Icon(Icons.add),activeColor: Theme.of(context).primaryColor
           ),
           BottomNavyBarItem(
               title: Text('Profile'),
-              icon: Icon(Icons.person)
+              icon: Icon(Icons.person),activeColor: Theme.of(context).primaryColor
           ),
           BottomNavyBarItem(
               title: Text('Settings'),
-              icon: Icon(Icons.settings)
+              icon: Icon(Icons.settings),activeColor: Theme.of(context).primaryColor
           ),
         ],
       ),
