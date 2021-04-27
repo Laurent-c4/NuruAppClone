@@ -2,8 +2,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:loading/indicator/ball_pulse_indicator.dart';
+import 'package:loading/loading.dart';
+import 'package:nuru_clone_app/pages/auth_page.dart';
 import 'package:nuru_clone_app/pages/home_page.dart';
-import 'package:nuru_clone_app/pages/login_page.dart';
 import 'package:nuru_clone_app/provider/theme_provider.dart';
 import 'package:nuru_clone_app/services/authentication_service.dart';
 import 'package:provider/provider.dart';
@@ -66,7 +68,12 @@ class MyApp extends StatelessWidget {
               }
 
               // Otherwise, show something whilst waiting for initialization to complete
-              return Center(child: Text("Loading"));
+              return Container(
+                color: Colors.lightBlue,
+                child: Center(
+                  child: Loading(indicator: BallPulseIndicator(), size: 100.0,color: Colors.pink),
+                ),
+              );
             },
           );
         },
@@ -81,6 +88,6 @@ class AuthenticationWrapper extends StatelessWidget {
     if (firebaseUser != null) {
       return HomePage();
     }
-    return LoginPage();
+    return AuthPage();
   }
 }
