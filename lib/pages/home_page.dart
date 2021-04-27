@@ -50,17 +50,20 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       body: SizedBox.expand(
-        child: PageView(
-          controller: _pageController,
-          onPageChanged: (index) {
-            setState(() => _currentIndex = index);
-          },
-          children: <Widget>[
-            PostsPage(),
-            Container(color: Colors.red,),
-            ProfilePage(),
-            Container(color: Colors.red,),
-          ],
+        child: Container(
+          margin: EdgeInsets.fromLTRB(0, 0, 0, 10),
+          child: PageView(
+            controller: _pageController,
+            onPageChanged: (index) {
+              setState(() => _currentIndex = index);
+            },
+            children: <Widget>[
+              PostsPage(),
+              Container(color: Colors.red,),
+              ProfilePage(),
+              Container(color: Colors.red,),
+            ],
+          ),
         ),
       ),
       bottomNavigationBar: BottomNavyBar(
