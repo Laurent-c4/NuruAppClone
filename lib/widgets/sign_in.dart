@@ -168,7 +168,7 @@ class _SignInState extends State<SignIn> {
                     onPressed: () {
                       context.read<AuthenticationService>().signIn(
                           email: loginEmailController.text,
-                          password: loginPasswordController.text);
+                          password: loginPasswordController.text).then((value) => CustomSnackBar(context, Text(value)));
                     }),
               )
             ],

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:nuru_clone_app/provider/theme_provider.dart';
 
 class CustomSnackBar {
   CustomSnackBar(BuildContext context, Widget content,
-      {SnackBarAction snackBarAction, Color backgroundColor = Colors.green}) {
+      {SnackBarAction snackBarAction, Color backgroundColor = AppThemes.black}) {
     final SnackBar snackBar = SnackBar(
         action: snackBarAction,
         backgroundColor: backgroundColor,

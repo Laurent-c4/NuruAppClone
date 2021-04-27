@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:nuru_clone_app/pages/widgets/sign_in.dart';
-import 'package:nuru_clone_app/pages/widgets/sign_up.dart';
+import 'file:///C:/Users/hp/Desktop/Laurent%20Juma%20-%20Feb%202021%20to%20April%202021/NuruAppClone/lib/widgets/sign_in.dart';
+import 'file:///C:/Users/hp/Desktop/Laurent%20Juma%20-%20Feb%202021%20to%20April%202021/NuruAppClone/lib/widgets/sign_up.dart';
 import 'package:nuru_clone_app/provider/theme_provider.dart';
 import 'package:nuru_clone_app/utils/bubble_indicator_painter.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({Key key}) : super(key: key);
+class AuthPage extends StatefulWidget {
+  const AuthPage({Key key}) : super(key: key);
 
   @override
-  _LoginPageState createState() => _LoginPageState();
+  _AuthPageState createState() => _AuthPageState();
 }
 
-class _LoginPageState extends State<LoginPage>
+class _AuthPageState extends State<AuthPage>
     with SingleTickerProviderStateMixin {
   PageController _pageController;
 
@@ -61,8 +61,8 @@ class _LoginPageState extends State<LoginPage>
                 child: Image(
                     height:
                         MediaQuery.of(context).size.height > 800 ? 191.0 : 150,
-                    fit: BoxFit.fill,
-                    image: const AssetImage('assets/img/login_logo.png')),
+                    fit: BoxFit.contain,
+                    image: const AssetImage('assets/img/Nuru-Logo.png')),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 20.0),
@@ -126,7 +126,7 @@ class _LoginPageState extends State<LoginPage>
                 ),
                 onPressed: _onSignInButtonPress,
                 child: Text(
-                  'Existing',
+                  'Login',
                   style: TextStyle(
                       color: left,
                       fontSize: 16.0,
@@ -142,7 +142,7 @@ class _LoginPageState extends State<LoginPage>
                 ),
                 onPressed: _onSignUpButtonPress,
                 child: Text(
-                  'New',
+                  'Sign Up',
                   style: TextStyle(
                       color: right,
                       fontSize: 16.0,

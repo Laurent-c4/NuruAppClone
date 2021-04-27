@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:nuru_clone_app/provider/theme_provider.dart';
+import 'package:nuru_clone_app/services/authentication_service.dart';
 import 'package:nuru_clone_app/widgets/snackbar.dart';
+import 'package:provider/provider.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({Key key}) : super(key: key);
@@ -244,7 +246,9 @@ class _SignUpState extends State<SignUp> {
                           fontFamily: 'WorkSansBold'),
                     ),
                   ),
-                  onPressed: () => _toggleSignUpButton(),
+                  onPressed: () {context.read<AuthenticationService>().signUp(
+                      email: signupEmailController.text,
+                      password: signupPasswordController.text).then((value) => CustomSnackBar(context, Text(value)));},
                 ),
               )
             ],
