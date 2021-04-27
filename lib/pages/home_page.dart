@@ -51,7 +51,7 @@ class _HomePageState extends State<HomePage> {
         ),
       body: SizedBox.expand(
         child: Container(
-          margin: EdgeInsets.fromLTRB(0, 0, 0, 10),
+          margin: EdgeInsets.fromLTRB(0, 0, 0, 7),
           child: PageView(
             controller: _pageController,
             onPageChanged: (index) {
