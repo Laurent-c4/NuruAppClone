@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 
 class ThemeProvider extends ChangeNotifier {
-  ThemeMode themeMode = ThemeMode.system;
+  ThemeMode themeMode = ThemeMode.dark;
 
   bool get isDarkMode {
     if (themeMode == ThemeMode.system) {
@@ -26,18 +26,18 @@ class AppThemes {
     scaffoldBackgroundColor: Colors.grey.shade900,
     primaryColor: Colors.black,
     colorScheme: ColorScheme.dark(),
-    iconTheme: IconThemeData(color: Colors.purple.shade200, opacity: 0.8),
+    iconTheme: IconThemeData(color: Color(0xFFF6B21A), opacity: 0.8),
   );
 
   static final lightTheme = ThemeData(
     scaffoldBackgroundColor: Colors.white,
     primaryColor: Colors.white,
     colorScheme: ColorScheme.light(),
-    iconTheme: IconThemeData(color: Colors.red, opacity: 0.8),
+    iconTheme: IconThemeData(color: Color(0xFFF6B21A), opacity: 0.8),
   );
 
   static const Color loginGradientStart = Color(0xFFfbab66);
-  static const Color loginGradientEnd = Color(0xFFf7418c);
+  static const Color loginGradientEnd = Color(0xFFF6B21A);
   static const Color white = Color(0xFFFFFFFF);
   static const Color black = Color(0xFF000000);
 

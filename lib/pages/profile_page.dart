@@ -1,8 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
-class ProfileWidget extends StatelessWidget {
-  const ProfileWidget({
+class ProfilePage extends StatelessWidget {
+  const ProfilePage({
     Key key,
   }) : super(key: key);
 
@@ -23,7 +24,7 @@ class ProfileWidget extends StatelessWidget {
             Align(
               alignment: Alignment.centerLeft,
               child: Text(
-                'PHOTOS',
+                'POSTS',
                 style: TextStyle(
                   color: Theme.of(context).iconTheme.color,
                   fontSize: 16,
@@ -66,7 +67,7 @@ class ProfileWidget extends StatelessWidget {
           SizedBox(height: 20),
           CircleAvatar(
             radius: 46,
-            backgroundColor: Theme.of(context).iconTheme.color,
+            backgroundColor: Theme.of(context).primaryIconTheme.color,
             child: CircleAvatar(
               radius: 44,
               backgroundColor: Theme.of(context).scaffoldBackgroundColor,
@@ -79,7 +80,7 @@ class ProfileWidget extends StatelessWidget {
           ),
           SizedBox(height: 20),
           Text(
-            'Jane Doe',
+            FirebaseAuth.instance.currentUser.email,
             style: TextStyle(
               fontSize: 24,
               fontWeight: FontWeight.bold,
@@ -89,9 +90,9 @@ class ProfileWidget extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(Icons.location_on),
+              Icon(Icons.email),
               const SizedBox(width: 4),
-              Text('New York, USA'),
+              Text(FirebaseAuth.instance.currentUser.email),
             ],
           ),
           SizedBox(height: 16),
