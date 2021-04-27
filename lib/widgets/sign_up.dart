@@ -77,6 +77,7 @@ class _SignUpState extends State<SignUp> {
                             ),
                             hintText: 'Name',
                             hintStyle: TextStyle(
+                                color: Colors.black,
                                 fontFamily: 'WorkSansSemiBold', fontSize: 16.0),
                           ),
                           onSubmitted: (_) {
@@ -109,6 +110,7 @@ class _SignUpState extends State<SignUp> {
                             ),
                             hintText: 'Email Address',
                             hintStyle: TextStyle(
+                                color: Colors.black,
                                 fontFamily: 'WorkSansSemiBold', fontSize: 16.0),
                           ),
                           onSubmitted: (_) {
@@ -141,6 +143,7 @@ class _SignUpState extends State<SignUp> {
                             ),
                             hintText: 'Password',
                             hintStyle: const TextStyle(
+                                color: Colors.black,
                                 fontFamily: 'WorkSansSemiBold', fontSize: 16.0),
                             suffixIcon: GestureDetector(
                               onTap: _toggleSignup,
@@ -183,6 +186,7 @@ class _SignUpState extends State<SignUp> {
                             ),
                             hintText: 'Confirmation',
                             hintStyle: const TextStyle(
+                                color: Colors.black,
                                 fontFamily: 'WorkSansSemiBold', fontSize: 16.0),
                             suffixIcon: GestureDetector(
                               onTap: _toggleSignupConfirm,

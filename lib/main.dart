@@ -10,8 +10,9 @@ import 'package:nuru_clone_app/provider/theme_provider.dart';
 import 'package:nuru_clone_app/services/authentication_service.dart';
 import 'package:provider/provider.dart';
 
-void main() {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
 
   /// Specifies the set of orientations the application interface can
   /// be displayed in.
@@ -26,8 +27,8 @@ void main() {
 class MyApp extends StatelessWidget {
   static const String title = 'Nuru App Clone';
 
-  // Create the initialization Future outside of `build`:
-  final Future<FirebaseApp> _initialization = Firebase.initializeApp();
+  // // Create the initialization Future outside of `build`:
+  // final Future<FirebaseApp> _initialization = Firebase.initializeApp();
 
   @override
   Widget build(BuildContext context) => ChangeNotifierProvider(
@@ -35,46 +36,22 @@ class MyApp extends StatelessWidget {
         builder: (context, _) {
           final themeProvider = Provider.of<ThemeProvider>(context);
 
-          return FutureBuilder(
-            // Initialize FlutterFire:
-            future: _initialization,
-            builder: (context, snapshot) {
-              // Check for errors
-              if (snapshot.hasError) {
-                return Center(child: Text("Oops"));
-              }
-
-              // Once complete, show your application
-              if (snapshot.connectionState == ConnectionState.done) {
-                return MultiProvider(
-                  providers: [
-                    Provider<AuthenticationService>(
-                        create: (_) =>
-                            AuthenticationService(FirebaseAuth.instance)),
-                    StreamProvider(
-                      create: (context) => context
-                          .read<AuthenticationService>()
-                          .authStateChanges,
-                    )
-                  ],
-                  child: MaterialApp(
-                    title: title,
-                    themeMode: themeProvider.themeMode,
-                    theme: AppThemes.lightTheme,
-                    darkTheme: AppThemes.darkTheme,
-                    home: AuthenticationWrapper(),
-                  ),
-                );
-              }
-
-              // Otherwise, show something whilst waiting for initialization to complete
-              return Container(
-                color: Colors.lightBlue,
-                child: Center(
-                  child: Loading(indicator: BallPulseIndicator(), size: 100.0,color: Colors.pink),
-                ),
-              );
-            },
+          return MultiProvider(
+            providers: [
+              Provider<AuthenticationService>(
+                  create: (_) => AuthenticationService(FirebaseAuth.instance)),
+              StreamProvider(
+                create: (context) =>
+                    context.read<AuthenticationService>().authStateChanges,
+              )
+            ],
+            child: MaterialApp(
+              title: title,
+              themeMode: themeProvider.themeMode,
+              theme: AppThemes.lightTheme,
+              darkTheme: AppThemes.darkTheme,
+              home: AuthenticationWrapper(),
+            ),
           );
         },
       );

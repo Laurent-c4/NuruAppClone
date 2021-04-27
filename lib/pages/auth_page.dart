@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'file:///C:/Users/hp/Desktop/Laurent%20Juma%20-%20Feb%202021%20to%20April%202021/NuruAppClone/lib/widgets/sign_in.dart';
-import 'file:///C:/Users/hp/Desktop/Laurent%20Juma%20-%20Feb%202021%20to%20April%202021/NuruAppClone/lib/widgets/sign_up.dart';
 import 'package:nuru_clone_app/provider/theme_provider.dart';
 import 'package:nuru_clone_app/utils/bubble_indicator_painter.dart';
+import 'package:nuru_clone_app/widgets/sign_in.dart';
+import 'package:nuru_clone_app/widgets/sign_up.dart';
 
 class AuthPage extends StatefulWidget {
   const AuthPage({Key key}) : super(key: key);

@@ -1,6 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:nuru_clone_app/provider/theme_provider.dart';
+import 'package:nuru_clone_app/services/authentication_service.dart';
+import 'package:nuru_clone_app/widgets/snackbar.dart';
+import 'package:provider/provider.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({
@@ -13,7 +17,8 @@ class ProfilePage extends StatelessWidget {
         children: [
           buildProfile(context),
           Divider(height: 32),
-          buildPhotos(context),
+          // buildPhotos(context),
+          buildButtons(context)
         ],
       );
 
@@ -36,6 +41,30 @@ class ProfilePage extends StatelessWidget {
             buildPhotoGrid(),
           ],
         ),
+      );
+
+  Widget buildButtons(BuildContext context) => Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          MaterialButton(
+              highlightColor: Colors.transparent,
+              splashColor: AppThemes.loginGradientEnd,
+              child: const Padding(
+                padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 42.0),
+                child: Text(
+                  'SIGN OUT',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 25.0,
+                      fontFamily: 'WorkSansBold'),
+                ),
+              ),
+              onPressed: () {
+                context.read<AuthenticationService>().signOut().then((value) =>
+                    Navigator.of(context).pushNamedAndRemoveUntil(
+                        '/', (Route<dynamic> route) => false));
+              }),
+        ],
       );
 
   Widget buildPhotoGrid() => StaggeredGridView.countBuilder(

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:nuru_clone_app/model/post.dart';
 import 'package:nuru_clone_app/pages/posts_page.dart';
 import 'package:nuru_clone_app/widgets/change_theme_button_widget.dart';
+
 import 'package:nuru_clone_app/widgets/post_item.dart';
 import 'package:provider/provider.dart';
 import 'package:nuru_clone_app/main.dart';

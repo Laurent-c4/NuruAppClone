@@ -39,6 +39,9 @@ dependencies:
   firebase_core: "^0.7.0"
   firebase_auth: "^0.20.1"
 
+  #google sign_in
+  google_sign_in: "^4.5.1"
+
   bottom_navy_bar: ^5.6.0
 
   loading: ^1.0.2

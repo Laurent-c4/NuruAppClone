@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthenticationService {
   final FirebaseAuth _firebaseAuth;
@@ -21,7 +22,8 @@ class AuthenticationService {
   /// error messages. That way you can throw, return or whatever you prefer with that instead.
   Future<String> signIn({String email, String password}) async {
     try {
-      await _firebaseAuth.signInWithEmailAndPassword(email: email, password: password);
+      await _firebaseAuth.signInWithEmailAndPassword(
+          email: email, password: password);
       return "Signed in";
     } on FirebaseAuthException catch (e) {
       return e.message;
@@ -34,10 +36,28 @@ class AuthenticationService {
   /// error messages. That way you can throw, return or whatever you prefer with that instead.
   Future<String> signUp({String email, String password}) async {
     try {
-      await _firebaseAuth.createUserWithEmailAndPassword(email: email, password: password);
+      await _firebaseAuth.createUserWithEmailAndPassword(
+          email: email, password: password);
       return "Signed up";
     } on FirebaseAuthException catch (e) {
       return e.message;
     }
+  }
+
+  ///Google Sign In
+  Future<UserCredential> signInWithGoogle() async {
+    //Trigger the authentication flow
+    final GoogleSignInAccount googleUser = await GoogleSignIn().signIn();
+
+    //Obtain auth details from request
+    final GoogleSignInAuthentication googleAuth =
+        await googleUser.authentication;
+
+    //Create a new credential
+    final credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth.accessToken, idToken: googleAuth.idToken);
+
+    //Once User is signed in, return the credentials
+    return await FirebaseAuth.instance.signInWithCredential(credential);
   }
 }

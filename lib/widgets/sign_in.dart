@@ -71,7 +71,9 @@ class _SignInState extends State<SignIn> {
                             ),
                             hintText: 'Email Address',
                             hintStyle: TextStyle(
-                                fontFamily: 'WorkSansSemiBold', fontSize: 17.0),
+                                color: Colors.black,
+                                fontFamily: 'WorkSansSemiBold',
+                                fontSize: 17.0),
                           ),
                           onSubmitted: (_) {
                             focusNodePassword.requestFocus();
@@ -103,7 +105,9 @@ class _SignInState extends State<SignIn> {
                             ),
                             hintText: 'Password',
                             hintStyle: const TextStyle(
-                                fontFamily: 'WorkSansSemiBold', fontSize: 17.0),
+                                color: Colors.black,
+                                fontFamily: 'WorkSansSemiBold',
+                                fontSize: 17.0),
                             suffixIcon: GestureDetector(
                               onTap: _toggleLogin,
                               child: Icon(
@@ -166,9 +170,13 @@ class _SignInState extends State<SignIn> {
                       ),
                     ),
                     onPressed: () {
-                      context.read<AuthenticationService>().signIn(
-                          email: loginEmailController.text,
-                          password: loginPasswordController.text).then((value) => CustomSnackBar(context, Text(value)));
+                      context
+                          .read<AuthenticationService>()
+                          .signIn(
+                              email: loginEmailController.text,
+                              password: loginPasswordController.text)
+                          .then(
+                              (value) => CustomSnackBar(context, Text(value)));
                     }),
               )
             ],
@@ -237,29 +245,34 @@ class _SignInState extends State<SignIn> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.only(top: 10.0, right: 40.0),
-                child: GestureDetector(
-                  onTap: () => CustomSnackBar(
-                      context, const Text('Facebook button pressed')),
-                  child: Container(
-                    padding: const EdgeInsets.all(15.0),
-                    decoration: const BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: Colors.white,
-                    ),
-                    child: const Icon(
-                      FontAwesomeIcons.facebookF,
-                      color: Color(0xFF0084ff),
-                    ),
-                  ),
-                ),
-              ),
+              // Padding(
+              //   padding: const EdgeInsets.only(top: 10.0, right: 40.0),
+              //   child: GestureDetector(
+              //     onTap: () => CustomSnackBar(
+              //         context, const Text('Facebook button pressed')),
+              //     child: Container(
+              //       padding: const EdgeInsets.all(15.0),
+              //       decoration: const BoxDecoration(
+              //         shape: BoxShape.circle,
+              //         color: Colors.white,
+              //       ),
+              //       child: const Icon(
+              //         FontAwesomeIcons.phone,
+              //         color: Color(0xFF0084ff),
+              //       ),
+              //     ),
+              //   ),
+              // ),
               Padding(
                 padding: const EdgeInsets.only(top: 10.0),
                 child: GestureDetector(
-                  onTap: () => CustomSnackBar(
-                      context, const Text('Google button pressed')),
+                  onTap: () {
+                    context
+                        .read<AuthenticationService>()
+                        .signInWithGoogle()
+                        .then((value) =>
+                            CustomSnackBar(context, Text("Welcome " + value.user.email)));
+                  },
                   child: Container(
                     padding: const EdgeInsets.all(15.0),
                     decoration: const BoxDecoration(
