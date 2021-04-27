@@ -36,9 +36,9 @@ class AppThemes {
     scaffoldBackgroundColor: Color(0xFFE5E5E5),
     primaryColor: Color(0xFFF6B21A),
     colorScheme: ColorScheme.light(),
-    disabledColor: Colors.white,
+    disabledColor: Colors.white60,
     iconTheme: IconThemeData(color: Color(0xFFF6B21A)),
-    bottomAppBarColor: Colors.white60
+    bottomAppBarColor: Colors.white54
   );
 
   static const Color loginGradientStart = Color(0xFFfbab66);

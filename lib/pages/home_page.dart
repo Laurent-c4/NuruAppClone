@@ -43,7 +43,7 @@ class _HomePageState extends State<HomePage> {
           // leading: Icon(Icons.menu),
           title: Text(MyApp.title, style: TextStyle(color: Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark
               ? Theme.of(context).primaryColor
-              : Colors.black,),),
+              : Colors.white,),),
           elevation: 0,
           actions: [
             ChangeThemeButtonWidget(),
