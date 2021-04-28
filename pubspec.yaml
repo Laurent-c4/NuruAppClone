@@ -50,6 +50,10 @@ dependencies:
 
   flutter_sound_lite: ^8.0.34
 
+  image_picker: ^0.7.4
+
+  video_player: ^2.1.1
+
   permission_handler: ^7.0.0
 
   font_awesome_flutter:
