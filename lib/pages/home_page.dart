@@ -5,6 +5,7 @@ import 'package:nuru_clone_app/pages/posts_page.dart';
 import 'package:nuru_clone_app/widgets/change_theme_button_widget.dart';
 
 import 'package:nuru_clone_app/widgets/post_item.dart';
+import 'package:nuru_clone_app/widgets/simple_recorder.dart';
 import 'package:provider/provider.dart';
 import 'package:nuru_clone_app/main.dart';
 import 'package:nuru_clone_app/pages/profile_page.dart';
@@ -60,7 +61,7 @@ class _HomePageState extends State<HomePage> {
             },
             children: <Widget>[
               PostsPage(),
-              Container(color: Colors.red,),
+              SimpleRecorder(),
               ProfilePage(),
               Container(color: Colors.red,),
             ],

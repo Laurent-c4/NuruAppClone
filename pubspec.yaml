@@ -33,11 +33,11 @@ dependencies:
   flutter_staggered_grid_view: ^0.3.3
 
   # state management
-  provider: ^4.3.2+3
+  provider: ^5.0.0
 
   # firebase
-  firebase_core: "^0.7.0"
-  firebase_auth: "^0.20.1"
+  firebase_core: "^1.1.0"
+  firebase_auth: "^1.1.2"
 
   #google sign_in
   google_sign_in: "^4.5.1"
@@ -47,6 +47,10 @@ dependencies:
   bottom_navy_bar: ^5.6.0
 
   loading: ^1.0.2
+
+  flutter_sound_lite: ^8.0.34
+
+  permission_handler: ^7.0.0
 
   font_awesome_flutter:
 
