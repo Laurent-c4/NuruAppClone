@@ -147,8 +147,8 @@ class _SignInState extends State<SignIn> {
                   ],
                   gradient: LinearGradient(
                       colors: <Color>[
-                        AppThemes.loginGradientEnd,
-                        AppThemes.loginGradientStart
+                        AppThemes.loginGradientStart,
+                        AppThemes.loginGradientEnd
                       ],
                       begin: FractionalOffset(0.2, 0.2),
                       end: FractionalOffset(1.0, 1.0),
@@ -176,7 +176,9 @@ class _SignInState extends State<SignIn> {
                               email: loginEmailController.text,
                               password: loginPasswordController.text)
                           .then(
-                              (value) => CustomSnackBar(context, Text(value)));
+                              (value) => CustomSnackBar(context, Text(value, style: TextStyle(
+                                  color: Colors.white,
+                                  fontFamily: 'WorkSansBold'))));
                     }),
               )
             ],
@@ -271,7 +273,9 @@ class _SignInState extends State<SignIn> {
                         .read<AuthenticationService>()
                         .signInWithGoogle()
                         .then((value) =>
-                            CustomSnackBar(context, Text("Welcome " + value.user.email)));
+                            CustomSnackBar(context, Text("Welcome " + value.user.email, style: TextStyle(
+                                color: Colors.white,
+                                fontFamily: 'WorkSansBold'))));
                   },
                   child: Container(
                     padding: const EdgeInsets.all(15.0),

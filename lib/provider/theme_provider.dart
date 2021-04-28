@@ -41,8 +41,8 @@ class AppThemes {
     bottomAppBarColor: Colors.white54
   );
 
-  static const Color loginGradientStart = Color(0xFFfbab66);
-  static const Color loginGradientEnd = Color(0xFFF6B21A);
+  static const Color loginGradientStart = Color(0xFFF6B21A);
+  static const Color loginGradientEnd = Color(0xFF121212);
   static const Color white = Color(0xFFFFFFFF);
   static const Color black = Color(0xFF000000);
 

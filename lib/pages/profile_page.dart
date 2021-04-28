@@ -54,7 +54,6 @@ class ProfilePage extends StatelessWidget {
                 child: Text(
                   'SIGN OUT',
                   style: TextStyle(
-                      color: Colors.white,
                       fontSize: 25.0,
                       fontFamily: 'WorkSansBold'),
                 ),

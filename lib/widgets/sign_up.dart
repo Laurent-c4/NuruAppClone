@@ -227,8 +227,8 @@ class _SignUpState extends State<SignUp> {
                   ],
                   gradient: LinearGradient(
                       colors: <Color>[
-                        AppThemes.loginGradientEnd,
-                        AppThemes.loginGradientStart
+                        AppThemes.loginGradientStart,
+                        AppThemes.loginGradientEnd
                       ],
                       begin: FractionalOffset(0.2, 0.2),
                       end: FractionalOffset(1.0, 1.0),
@@ -252,7 +252,9 @@ class _SignUpState extends State<SignUp> {
                   ),
                   onPressed: () {context.read<AuthenticationService>().signUp(
                       email: signupEmailController.text,
-                      password: signupPasswordController.text).then((value) => CustomSnackBar(context, Text(value)));},
+                      password: signupPasswordController.text).then((value) => CustomSnackBar(context, Text(value, style: TextStyle(
+                      color: Colors.white,
+                      fontFamily: 'WorkSansBold'),)));},
                 ),
               )
             ],
