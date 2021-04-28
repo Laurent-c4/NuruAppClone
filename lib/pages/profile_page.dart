@@ -124,14 +124,14 @@ class ProfilePage extends StatelessWidget {
             ],
           ),
           SizedBox(height: 16),
-          Text('Photography is the story I fail to put into words'),
+          Text('NuruApp'),
           SizedBox(height: 16),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               buildCounters(context, '36', 'Posts'),
-              buildCounters(context, '3.5K', 'Following'),
-              buildCounters(context, '15K', 'Followers'),
+              // buildCounters(context, '3.5K', 'Following'),
+              // buildCounters(context, '15K', 'Followers'),
             ],
           ),
         ],

@@ -1,8 +1,10 @@
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:nuru_clone_app/model/post.dart';
+import 'package:nuru_clone_app/pages/add_post_page.dart';
 import 'package:nuru_clone_app/pages/posts_page.dart';
 import 'package:nuru_clone_app/widgets/change_theme_button_widget.dart';
+import 'package:nuru_clone_app/widgets/image_picker.dart';
 
 import 'package:nuru_clone_app/widgets/post_item.dart';
 import 'package:nuru_clone_app/widgets/simple_recorder.dart';
@@ -61,9 +63,9 @@ class _HomePageState extends State<HomePage> {
             },
             children: <Widget>[
               PostsPage(),
-              SimpleRecorder(),
+              AddPostPage(),
               ProfilePage(),
-              Container(color: Colors.red,),
+              Container(color: Theme.of(context).scaffoldBackgroundColor,child: Center(child: Text("Coming Soon!!!"),),),
             ],
           ),
         ),

@@ -5,7 +5,7 @@ import 'package:nuru_clone_app/model/post.dart';
 import 'package:nuru_clone_app/widgets/post_item.dart';
 
 class PostsPage extends StatelessWidget {
-  List<Post> items = posts;
+  final List<Post> items = posts;
 
   PostsPage({Key key}) : super(key: key);
 

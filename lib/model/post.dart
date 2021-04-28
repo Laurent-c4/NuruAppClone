@@ -1,8 +1,17 @@
+import 'package:nuru_clone_app/model/post_media.dart';
+
 class Post
 {
-  final String postName;
-  final String postImg;
-  final double price;
+  String postTitle;
+  String postDescription;
+  List<PostMedia> postMediaList;
 
-  const Post({this.postName, this.price, this.postImg});
+  String get getPostTitle => postTitle;
+  String get getPostDescription => postDescription;
+  List<PostMedia> get getPostMedia => postMediaList;
+
+  Post({this.postTitle, this.postDescription, this.postMediaList});
+
+
+
 }

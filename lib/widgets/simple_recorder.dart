@@ -20,6 +20,7 @@ import 'dart:async';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter_sound_lite/flutter_sound.dart';
+import 'package:nuru_clone_app/model/post_media.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 /*
@@ -150,63 +151,88 @@ class _SimpleRecorderState extends State<SimpleRecorder> {
   @override
   Widget build(BuildContext context) {
     Widget makeBody() {
-      return Column(
-        children: [
-          Container(
-            margin: const EdgeInsets.all(3),
-            padding: const EdgeInsets.all(3),
-            height: 80,
-            width: double.infinity,
-            alignment: Alignment.center,
-            decoration: BoxDecoration(
-              border: Border.all(
-                color: Theme.of(context).primaryColor,
-                width: 3,
+      return Scaffold(
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                margin: const EdgeInsets.all(3),
+                padding: const EdgeInsets.all(3),
+                height: 80,
+                width: double.infinity,
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: Theme.of(context).primaryColor,
+                    width: 3,
+                  ),
+                ),
+                child: Row(children: [
+                  ElevatedButton(
+                    onPressed: getRecorderFn(),
+                    //color: Colors.white,
+                    //disabledColor: Colors.grey,
+                    child: Text(_mRecorder.isRecording ? 'Stop' : 'Record'),
+                  ),
+                  SizedBox(
+                    width: 20,
+                  ),
+                  Text(_mRecorder.isRecording
+                      ? 'Recording in progress'
+                      : 'Recorder is stopped'),
+                ]),
+              ),
+              Container(
+                margin: const EdgeInsets.all(3),
+                padding: const EdgeInsets.all(3),
+                height: 80,
+                width: double.infinity,
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: Theme.of(context).primaryColor,
+                    width: 3,
+                  ),
+                ),
+                child: Row(children: [
+                  ElevatedButton(
+                    onPressed: getPlaybackFn(),
+                    //color: Colors.white,
+                    //disabledColor: Colors.grey,
+                    child: Text(_mPlayer.isPlaying ? 'Stop' : 'Play'),
+                  ),
+                  SizedBox(
+                    width: 20,
+                  ),
+                  Text(_mPlayer.isPlaying
+                      ? 'Playback in progress'
+                      : 'Player is stopped'),
+                ]),
+              ),
+            ],
+          ),
+        ),
+        floatingActionButton: Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: <Widget>[
+            Semantics(
+              label: 'done',
+              child: FloatingActionButton(
+                backgroundColor: Theme.of(context).primaryColor,
+                onPressed: () {
+                  Navigator.pop(
+                      context,
+                      new PostMedia(
+                          mediaType: "Audio", mediaPath: _mPath));
+                },
+                heroTag: 'image0',
+                tooltip: 'Done',
+                child: const Icon(Icons.check_outlined),
               ),
             ),
-            child: Row(children: [
-              ElevatedButton(
-                onPressed: getRecorderFn(),
-                //color: Colors.white,
-                //disabledColor: Colors.grey,
-                child: Text(_mRecorder.isRecording ? 'Stop' : 'Record'),
-              ),
-              SizedBox(
-                width: 20,
-              ),
-              Text(_mRecorder.isRecording
-                  ? 'Recording in progress'
-                  : 'Recorder is stopped'),
-            ]),
-          ),
-          Container(
-            margin: const EdgeInsets.all(3),
-            padding: const EdgeInsets.all(3),
-            height: 80,
-            width: double.infinity,
-            alignment: Alignment.center,
-            decoration: BoxDecoration(
-              border: Border.all(
-                color: Theme.of(context).primaryColor,
-                width: 3,
-              ),
-            ),
-            child: Row(children: [
-              ElevatedButton(
-                onPressed: getPlaybackFn(),
-                //color: Colors.white,
-                //disabledColor: Colors.grey,
-                child: Text(_mPlayer.isPlaying ? 'Stop' : 'Play'),
-              ),
-              SizedBox(
-                width: 20,
-              ),
-              Text(_mPlayer.isPlaying
-                  ? 'Playback in progress'
-                  : 'Player is stopped'),
-            ]),
-          ),
-        ],
+          ],
+        ),
       );
     }
 
