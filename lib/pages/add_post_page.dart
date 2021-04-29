@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:image_picker/image_picker.dart';
 import 'package:nuru_clone_app/helper/database_helper.dart';
 import 'package:nuru_clone_app/model/post.dart';
+import 'package:nuru_clone_app/pages/view_post_page.dart';
 import 'package:nuru_clone_app/provider/post_provider.dart';
 import 'package:nuru_clone_app/provider/theme_provider.dart';
 import 'package:nuru_clone_app/widgets/image_selector.dart';
@@ -230,13 +231,13 @@ class _AddPostPageState extends State<AddPostPage> {
                       DatabaseHelper.columnPostID: i
                     });
                   }
-                  
+
                   await DatabaseHelper.instance.insertPostMedia(rows);
 
                   CustomSnackBar(
                       context,
                       Text(
-                        "The inserted id is $i",
+                        "Post Added Successfully",
                         style: TextStyle(
                           color:
                               Provider.of<ThemeProvider>(context, listen: false)
@@ -246,9 +247,17 @@ class _AddPostPageState extends State<AddPostPage> {
                                   : Colors.white,
                         ),
                       ));
+
+                  Post viewPost = provider.post;
+                  List<PostMedia> viewPostMedia = provider.postMediaList;
                   Provider.of<PostProvider>(context, listen: false).resetPost();
                   postTitleController.clear();
                   postDescriptionController.clear();
+
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(builder: (context) => ViewPostPage(post: viewPost,postMediaList: viewPostMedia,)),
+                  // );
                 } else {
                   CustomSnackBar(
                       context,

@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:nuru_clone_app/helper/database_helper.dart';
 import 'package:nuru_clone_app/model/post.dart';
+import 'package:nuru_clone_app/pages/view_post_page.dart';
+
+import '../model/post_media.dart';
+import '../model/post_media.dart';
 
 class PostItem extends StatelessWidget {
   final Post post;
@@ -24,7 +28,23 @@ class PostItem extends StatelessWidget {
             child: new Padding(
               padding: new EdgeInsets.symmetric(vertical: 6.0),
               child: new ListTile(
-                // leading: new Image.asset('res/${post.postImg}'),
+                onTap: () {
+                  List<PostMedia> postMediaList = [];
+
+                  for (var datum in postMedia.data) {
+                    postMediaList.add(PostMedia(mediaType: datum['mediaType'],mediaPath: datum['mediaPath']));
+                  }
+
+
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => ViewPostPage(
+                              post: post,
+                              postMediaList: postMediaList,
+                            )),
+                  );
+                },
                 leading: new Image.asset('assets/img/login_logo.png'),
                 title: new Text(post.postTitle,
                     style: new TextStyle(
