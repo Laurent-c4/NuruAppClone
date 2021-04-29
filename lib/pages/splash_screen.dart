@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:nuru_clone_app/main.dart';
 
+import '../provider/theme_provider.dart';
 import 'home_page.dart';
 
 class OnBoardingPage extends StatefulWidget {
@@ -43,27 +44,28 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
         PageViewModel(
           title: "Post Covid 19 Updates",
           body:
-              "Instead of having to buy an entire share, invest any amount you want.",
+              "Create your posts, selecting media from the gallery",
           image: _buildImage('img1'),
           decoration: pageDecoration,
         ),
         PageViewModel(
           title: "View Covid 19 Updates",
           body:
-              "Download the Stockpile app and master the market with our mini-lesson.",
+              "Click on you post to view it in detail",
           image: _buildImage('img2'),
           decoration: pageDecoration,
         ),
         PageViewModel(
-          title: "Edit your posts",
-          bodyWidget: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: const [
-              Text("Click on ", style: bodyStyle),
-              Icon(Icons.edit),
-              Text(" to edit a post", style: bodyStyle),
-            ],
-          ),
+          title: "Delete your posts",
+          // bodyWidget: Row(
+          //   mainAxisAlignment: MainAxisAlignment.center,
+          //   children: const [
+          //     Text("Click on ", style: bodyStyle),
+          //     Icon(Icons.edit),
+          //     Text(" to edit a post", style: bodyStyle),
+          //   ],
+          // ),
+          body: "Swipe the post left or right to delete ",
           image: _buildImage('img1'),
           decoration: pageDecoration,
         ),
@@ -79,6 +81,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
       dotsDecorator: const DotsDecorator(
         size: Size(10.0, 10.0),
         color: Color(0xFFBDBDBD),
+        activeColor: AppThemes.snackBarDark,
         activeSize: Size(22.0, 10.0),
         activeShape: RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(25.0)),
