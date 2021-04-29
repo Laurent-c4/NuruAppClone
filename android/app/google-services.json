@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "414968249103",
+    "project_id": "nuruappclone",
+    "storage_bucket": "nuruappclone.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:414968249103:android:baa7f4d4b3a1f737c09c7a",
+        "android_client_info": {
+          "package_name": "com.example.nuru_clone_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "414968249103-9tde9i1oso7cgkfk3l59e0m9ner2hv52.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.nuru_clone_app",
+            "certificate_hash": "3f464962166be5bf292ad6fa48ad2239dec94672"
+          }
+        },
+        {
+          "client_id": "414968249103-5j053eekim1q7cgc6shcg1og6tsuit6s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDqC3W9w3jlrzabLIGm4wyf5wsKo6szElQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "414968249103-5j053eekim1q7cgc6shcg1og6tsuit6s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
