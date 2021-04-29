@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nuru_clone_app/helper/database_helper.dart';
 import 'package:nuru_clone_app/model/post.dart';
 
 class PostItem extends StatelessWidget {
@@ -32,11 +33,13 @@ class PostItem extends StatelessWidget {
                 child: new Text(post.postDescription),
               ),
             ),
-            trailing: new IconButton(
-              onPressed: () {},
-              icon:
-                  new Icon(Icons.delete, color: Theme.of(context).primaryColor),
-            ),
+            // trailing: new IconButton(
+            //   onPressed: () {
+            //     DatabaseHelper.instance.deletePost(post.id);
+            //   },
+            //   icon:
+            //       new Icon(Icons.delete, color: Theme.of(context).primaryColor),
+            // ),
           ),
         ),
       ),

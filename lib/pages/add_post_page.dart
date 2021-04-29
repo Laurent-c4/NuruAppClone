@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:io';
 import 'package:image_picker/image_picker.dart';
+import 'package:nuru_clone_app/helper/database_helper.dart';
 import 'package:nuru_clone_app/model/post.dart';
 import 'package:nuru_clone_app/provider/post_provider.dart';
 import 'package:nuru_clone_app/provider/theme_provider.dart';
@@ -12,6 +13,8 @@ import 'package:provider/provider.dart';
 import 'package:carousel_slider/carousel_controller.dart';
 import 'package:carousel_slider/carousel_options.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+
+import '../provider/post_provider.dart';
 
 class AddPostPage extends StatefulWidget {
   @override
@@ -204,18 +207,31 @@ class _AddPostPageState extends State<AddPostPage> {
             padding: const EdgeInsets.only(top: 16.0),
             child: FloatingActionButton(
               backgroundColor: Theme.of(context).primaryColor,
-              onPressed: () {
+              onPressed: () async {
                 String desc = postDescriptionController.text.trim();
                 String title = postTitleController.text.trim();
+
                 if (desc.isNotEmpty && title.isNotEmpty) {
+                  PostProvider provider =
+                      Provider.of<PostProvider>(context, listen: false);
+
+                  int i = await DatabaseHelper.instance.insertPost({
+                    DatabaseHelper.columnTitle: provider.postTitle,
+                    DatabaseHelper.columnDescription: provider.postDescription
+                  });
+
                   CustomSnackBar(
                       context,
                       Text(
-                        "If you allow me, I can complete this awesome app...",
-                        style: TextStyle(color: Provider.of<ThemeProvider>(context, listen: false).themeMode ==
-                            ThemeMode.dark
-                            ? Colors.black
-                            : Colors.white,),
+                        "The inserted id is $i",
+                        style: TextStyle(
+                          color:
+                              Provider.of<ThemeProvider>(context, listen: false)
+                                          .themeMode ==
+                                      ThemeMode.dark
+                                  ? Colors.black
+                                  : Colors.white,
+                        ),
                       ));
                   Provider.of<PostProvider>(context, listen: false).resetPost();
                   postTitleController.clear();
@@ -229,10 +245,14 @@ class _AddPostPageState extends State<AddPostPage> {
                             : desc.isEmpty
                                 ? "Fill in description"
                                 : "Fill in title",
-                        style: TextStyle(color: Provider.of<ThemeProvider>(context, listen: false).themeMode ==
-                            ThemeMode.dark
-                            ? Colors.black
-                            : Colors.white,),
+                        style: TextStyle(
+                          color:
+                              Provider.of<ThemeProvider>(context, listen: false)
+                                          .themeMode ==
+                                      ThemeMode.dark
+                                  ? Colors.black
+                                  : Colors.white,
+                        ),
                       ));
                 }
               },

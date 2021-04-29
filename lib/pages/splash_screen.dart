@@ -55,15 +55,16 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
           decoration: pageDecoration,
         ),
         PageViewModel(
-          title: "Edit your posts",
-          bodyWidget: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: const [
-              Text("Click on ", style: bodyStyle),
-              Icon(Icons.edit),
-              Text(" to edit a post", style: bodyStyle),
-            ],
-          ),
+          title: "Delete your posts",
+          // bodyWidget: Row(
+          //   mainAxisAlignment: MainAxisAlignment.center,
+          //   children: const [
+          //     Text("Click on ", style: bodyStyle),
+          //     Icon(Icons.edit),
+          //     Text(" to edit a post", style: bodyStyle),
+          //   ],
+          // ),
+          body: "Swipe the post left or right to delete ",
           image: _buildImage('img1'),
           decoration: pageDecoration,
         ),
