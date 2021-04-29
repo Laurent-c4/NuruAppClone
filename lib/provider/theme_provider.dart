@@ -23,28 +23,28 @@ class AppThemes {
   const AppThemes();
 
   static final darkTheme = ThemeData(
-    scaffoldBackgroundColor: Color(0xFF121212),
-    primaryColor: Colors.orange[200],
-    accentColor: Colors.purple[200],
-    disabledColor: Color(0xFF1D1D1D),
-    colorScheme: ColorScheme.dark(),
-    iconTheme: IconThemeData(color:Colors.orange[200]),
-    bottomAppBarColor: Colors.black38
-  );
+      scaffoldBackgroundColor: Color(0xFF121212),
+      primaryColor: Colors.orange[200],
+      accentColor: Colors.purple[200],
+      disabledColor: Color(0xFF1D1D1D),
+      colorScheme: ColorScheme.dark(),
+      iconTheme: IconThemeData(color: Colors.orange[200]),
+      bottomAppBarColor: Colors.black38);
 
   static final lightTheme = ThemeData(
-    scaffoldBackgroundColor: Color(0xFFE5E5E5),
-    primaryColor: Color(0xFFF6B21A),
-    colorScheme: ColorScheme.light(),
-    disabledColor: Colors.white60,
-    iconTheme: IconThemeData(color: Color(0xFFF6B21A)),
-    bottomAppBarColor: Colors.white54
-  );
+      scaffoldBackgroundColor: Color(0xFFE5E5E5),
+      primaryColor: Color(0xFFF6B21A),
+      colorScheme: ColorScheme.light(),
+      disabledColor: Colors.white60,
+      iconTheme: IconThemeData(color: Color(0xFFF6B21A)),
+      bottomAppBarColor: Colors.white54);
 
   static const Color loginGradientStart = Color(0xFFF6B21A);
   static const Color loginGradientEnd = Color(0xFF121212);
   static const Color white = Color(0xFFFFFFFF);
   static const Color black = Color(0xFF000000);
+  static const Color snackBarDark = Color(0xFF1D1D1D);
+  static const Color snackBarLight = Colors.white70;
 
   static const LinearGradient primaryGradient = LinearGradient(
     colors: <Color>[loginGradientStart, loginGradientEnd],
@@ -52,5 +52,4 @@ class AppThemes {
     begin: Alignment.topCenter,
     end: Alignment.bottomCenter,
   );
-
 }

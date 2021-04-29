@@ -252,9 +252,10 @@ class _SignUpState extends State<SignUp> {
                   ),
                   onPressed: () {context.read<AuthenticationService>().signUp(
                       email: signupEmailController.text,
-                      password: signupPasswordController.text).then((value) => CustomSnackBar(context, Text(value, style: TextStyle(
-                      color: Colors.white,
-                      fontFamily: 'WorkSansBold'),)));},
+                      password: signupPasswordController.text).then((value) => CustomSnackBar(context, Text(value, style: TextStyle(color: Provider.of<ThemeProvider>(context, listen: false).themeMode ==
+                      ThemeMode.dark
+                      ? Colors.black
+                      : Colors.white,),)));},
                 ),
               )
             ],

@@ -21,6 +21,7 @@ import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter_sound_lite/flutter_sound.dart';
 import 'package:nuru_clone_app/model/post_media.dart';
+import 'package:nuru_clone_app/widgets/snackbar.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 /*
@@ -48,7 +49,7 @@ class _SimpleRecorderState extends State<SimpleRecorder> {
   bool _mPlayerIsInited = false;
   bool _mRecorderIsInited = false;
   bool _mplaybackReady = false;
-  final String _mPath = 'flutter_sound_example.aac';
+  String _mPath = null;
 
   @override
   void initState() {
@@ -90,6 +91,7 @@ class _SimpleRecorderState extends State<SimpleRecorder> {
   // ----------------------  Here is the code for recording and playback -------
 
   void record() {
+    _mPath = 'nuruapprecording' + DateTime.now().toString().replaceAll(RegExp(r"[^\s\w]"),"") + '.aac';
     _mRecorder
         .startRecorder(
       toFile: _mPath,
@@ -110,17 +112,18 @@ class _SimpleRecorderState extends State<SimpleRecorder> {
   }
 
   void play() {
+    print("Url is " + _mPath);
     assert(_mPlayerIsInited &&
         _mplaybackReady &&
         _mRecorder.isStopped &&
         _mPlayer.isStopped);
     _mPlayer
         .startPlayer(
-        fromURI: _mPath,
-        //codec: kIsWeb ? Codec.opusWebM : Codec.aacADTS,
-        whenFinished: () {
-          setState(() {});
-        })
+            fromURI: _mPath,
+            //codec: kIsWeb ? Codec.opusWebM : Codec.aacADTS,
+            whenFinished: () {
+              setState(() {});
+            })
         .then((value) {
       setState(() {});
     });
@@ -171,7 +174,7 @@ class _SimpleRecorderState extends State<SimpleRecorder> {
                 child: Row(children: [
                   ElevatedButton(
                     onPressed: getRecorderFn(),
-                    //color: Colors.white,
+                    //color: Theme.of(context).accentColor,
                     //disabledColor: Colors.grey,
                     child: Text(_mRecorder.isRecording ? 'Stop' : 'Record'),
                   ),
@@ -221,10 +224,12 @@ class _SimpleRecorderState extends State<SimpleRecorder> {
               child: FloatingActionButton(
                 backgroundColor: Theme.of(context).primaryColor,
                 onPressed: () {
-                  Navigator.pop(
-                      context,
-                      new PostMedia(
-                          mediaType: "Audio", mediaPath: _mPath));
+                  if (_mPath != null) {
+                    Navigator.pop(context,
+                        new PostMedia(mediaType: "Audio", mediaPath: _mPath));
+                  } else {
+                    Navigator.pop(context);
+                  }
                 },
                 heroTag: 'image0',
                 tooltip: 'Done',
@@ -236,7 +241,6 @@ class _SimpleRecorderState extends State<SimpleRecorder> {
       );
     }
 
-    return  makeBody();
-
+    return makeBody();
   }
 }

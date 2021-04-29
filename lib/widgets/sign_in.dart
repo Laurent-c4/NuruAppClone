@@ -176,9 +176,10 @@ class _SignInState extends State<SignIn> {
                               email: loginEmailController.text,
                               password: loginPasswordController.text)
                           .then(
-                              (value) => CustomSnackBar(context, Text(value, style: TextStyle(
-                                  color: Colors.white,
-                                  fontFamily: 'WorkSansBold'))));
+                              (value) => CustomSnackBar(context, Text(value, style: TextStyle(color: Provider.of<ThemeProvider>(context, listen: false).themeMode ==
+                                  ThemeMode.dark
+                                  ? Colors.black
+                                  : Colors.white,))));
                     }),
               )
             ],
@@ -273,9 +274,10 @@ class _SignInState extends State<SignIn> {
                         .read<AuthenticationService>()
                         .signInWithGoogle()
                         .then((value) =>
-                            CustomSnackBar(context, Text("Welcome " + value.user.email, style: TextStyle(
-                                color: Colors.white,
-                                fontFamily: 'WorkSansBold'))));
+                            CustomSnackBar(context, Text("Welcome " + value.user.email, style: TextStyle(color: Provider.of<ThemeProvider>(context, listen: false).themeMode ==
+                                ThemeMode.dark
+                                ? Colors.black
+                                : Colors.white,))));
                   },
                   child: Container(
                     padding: const EdgeInsets.all(15.0),

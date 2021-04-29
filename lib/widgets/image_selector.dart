@@ -12,6 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:nuru_clone_app/model/post_media.dart';
 import 'package:nuru_clone_app/provider/post_provider.dart';
+import 'package:nuru_clone_app/widgets/snackbar.dart';
 import 'package:provider/provider.dart';
 import 'package:video_player/video_player.dart';
 
@@ -74,25 +75,25 @@ class _ImageSelectorState extends State<ImageSelector> {
           source: source, maxDuration: const Duration(seconds: 10));
       await _playVideo(file);
     } else {
-      await _displayPickImageDialog(context,
-          (double maxWidth, double maxHeight, int quality) async {
-        try {
-          final pickedFile = await _picker.getImage(
-            source: source,
-            maxWidth: maxWidth,
-            maxHeight: maxHeight,
-            imageQuality: quality,
-          );
-          setState(() {
-            _imageFile = pickedFile;
-            _videoFile = null;
-          });
-        } catch (e) {
-          setState(() {
-            _pickImageError = e;
-          });
-        }
-      });
+      // await _displayPickImageDialog(context,
+      //     (double maxWidth, double maxHeight, int quality) async {
+      try {
+        final pickedFile = await _picker.getImage(
+          source: source,
+          // maxWidth: maxWidth,
+          // maxHeight: maxHeight,
+          // imageQuality: quality,
+        );
+        setState(() {
+          _imageFile = pickedFile;
+          _videoFile = null;
+        });
+      } catch (e) {
+        setState(() {
+          _pickImageError = e;
+        });
+      }
+      // });
     }
   }
 
@@ -189,40 +190,40 @@ class _ImageSelectorState extends State<ImageSelector> {
   }
 
   @override
-  Widget build(BuildContext context) => ChangeNotifierProvider(
+  Widget build(BuildContext buildContext) => ChangeNotifierProvider(
       create: (context) => PostProvider(),
       builder: (context, _) {
         return Scaffold(
           body: Center(
             child: !kIsWeb && defaultTargetPlatform == TargetPlatform.android
                 ? FutureBuilder<void>(
-                    future: retrieveLostData(),
-                    builder:
-                        (BuildContext context, AsyncSnapshot<void> snapshot) {
-                      switch (snapshot.connectionState) {
-                        case ConnectionState.none:
-                        case ConnectionState.waiting:
-                          return const Text(
-                            'You have not yet picked an image.',
-                            textAlign: TextAlign.center,
-                          );
-                        case ConnectionState.done:
-                          return isVideo ? _previewVideo() : _previewImage();
-                        default:
-                          if (snapshot.hasError) {
-                            return Text(
-                              'Pick image/video error: ${snapshot.error}}',
-                              textAlign: TextAlign.center,
-                            );
-                          } else {
-                            return const Text(
-                              'You have not yet picked an image.',
-                              textAlign: TextAlign.center,
-                            );
-                          }
-                      }
-                    },
-                  )
+              future: retrieveLostData(),
+              builder:
+                  (BuildContext context, AsyncSnapshot<void> snapshot) {
+                switch (snapshot.connectionState) {
+                  case ConnectionState.none:
+                  case ConnectionState.waiting:
+                    return const Text(
+                      'You have not yet picked an image.',
+                      textAlign: TextAlign.center,
+                    );
+                  case ConnectionState.done:
+                    return isVideo ? _previewVideo() : _previewImage();
+                  default:
+                    if (snapshot.hasError) {
+                      return Text(
+                        'Pick image/video error: ${snapshot.error}}',
+                        textAlign: TextAlign.center,
+                      );
+                    } else {
+                      return const Text(
+                        'You have not yet picked an image.',
+                        textAlign: TextAlign.center,
+                      );
+                    }
+                }
+              },
+            )
                 : (isVideo ? _previewVideo() : _previewImage()),
           ),
           floatingActionButton: Column(
@@ -295,6 +296,8 @@ class _ImageSelectorState extends State<ImageSelector> {
                           context,
                           new PostMedia(
                               mediaType: "Video", mediaPath: _videoFile.path));
+                    } else {
+                      Navigator.pop(context);
                     }
                   },
                   heroTag: 'done',
@@ -329,19 +332,19 @@ class _ImageSelectorState extends State<ImageSelector> {
                   controller: maxWidthController,
                   keyboardType: TextInputType.numberWithOptions(decimal: true),
                   decoration:
-                      InputDecoration(hintText: "Enter maxWidth if desired"),
+                  InputDecoration(hintText: "Enter maxWidth if desired"),
                 ),
                 TextField(
                   controller: maxHeightController,
                   keyboardType: TextInputType.numberWithOptions(decimal: true),
                   decoration:
-                      InputDecoration(hintText: "Enter maxHeight if desired"),
+                  InputDecoration(hintText: "Enter maxHeight if desired"),
                 ),
                 TextField(
                   controller: qualityController,
                   keyboardType: TextInputType.number,
                   decoration:
-                      InputDecoration(hintText: "Enter quality if desired"),
+                  InputDecoration(hintText: "Enter quality if desired"),
                 ),
               ],
             ),

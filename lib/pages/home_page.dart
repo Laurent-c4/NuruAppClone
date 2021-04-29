@@ -4,7 +4,6 @@ import 'package:nuru_clone_app/model/post.dart';
 import 'package:nuru_clone_app/pages/add_post_page.dart';
 import 'package:nuru_clone_app/pages/posts_page.dart';
 import 'package:nuru_clone_app/widgets/change_theme_button_widget.dart';
-import 'package:nuru_clone_app/widgets/image_picker.dart';
 
 import 'package:nuru_clone_app/widgets/post_item.dart';
 import 'package:nuru_clone_app/widgets/simple_recorder.dart';

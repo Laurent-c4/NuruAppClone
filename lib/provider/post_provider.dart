@@ -4,14 +4,11 @@ import 'package:nuru_clone_app/model/post.dart';
 import 'package:nuru_clone_app/model/post_media.dart';
 
 class PostProvider extends ChangeNotifier {
-  Post post = new Post(postTitle: "",postDescription: "",postMediaList: []);
+  Post post = new Post(postTitle: "", postDescription: "", postMediaList: []);
 
-  String postTitle="";
-  String postDescription="";
-  List<PostMedia> postMediaList=[];
-
-
-
+  String postTitle = "";
+  String postDescription = "";
+  List<PostMedia> postMediaList = [];
 
   void setPostTitle(String title) {
     postTitle = title;
@@ -27,7 +24,6 @@ class PostProvider extends ChangeNotifier {
 
   void addMediaToPost(PostMedia postMedia) {
     postMediaList.add(postMedia);
-    print(postMediaList.first.mediaType);
     notifyListeners();
   }
 
@@ -36,6 +32,22 @@ class PostProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  void removeMediaAt(int index) {
+    postMediaList.removeAt(index);
+    notifyListeners();
+  }
 
+  void removeAllMediaFromPost() {
+    postMediaList.clear();
+    notifyListeners();
+  }
+
+  void resetPost() {
+    postTitle = "";
+    print(postTitle);
+    postDescription = "";
+    print(postDescription);
+    postMediaList.clear();
+    notifyListeners();
+  }
 }
-
