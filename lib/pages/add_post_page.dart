@@ -14,6 +14,7 @@ import 'package:carousel_slider/carousel_controller.dart';
 import 'package:carousel_slider/carousel_options.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
+import '../model/post_media.dart';
 import '../provider/post_provider.dart';
 
 class AddPostPage extends StatefulWidget {
@@ -219,6 +220,18 @@ class _AddPostPageState extends State<AddPostPage> {
                     DatabaseHelper.columnTitle: provider.postTitle,
                     DatabaseHelper.columnDescription: provider.postDescription
                   });
+
+                  List<Map<String, dynamic>> rows = [];
+
+                  for (PostMedia postMedia in provider.postMediaList) {
+                    rows.add({
+                      DatabaseHelper.columnMediaType: postMedia.mediaType,
+                      DatabaseHelper.columnMediaPath: postMedia.mediaPath,
+                      DatabaseHelper.columnPostID: i
+                    });
+                  }
+                  
+                  await DatabaseHelper.instance.insertPostMedia(rows);
 
                   CustomSnackBar(
                       context,

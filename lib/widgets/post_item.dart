@@ -7,42 +7,59 @@ class PostItem extends StatelessWidget {
 
   PostItem(this.post);
 
-  @override
-  Widget build(BuildContext context) {
-    return new Container(
-      margin: new EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-      child: new Material(
-        elevation: 30.0,
-        shadowColor: Colors.black54,
-        color: Theme.of(context).disabledColor,
-        borderRadius: new BorderRadius.circular(6.0),
-        child: new Padding(
-          padding: new EdgeInsets.symmetric(vertical: 6.0),
-          child: new ListTile(
-            // leading: new Image.asset('res/${post.postImg}'),
-            leading: new Image.asset('assets/img/login_logo.png'),
-            title: new Text(post.postTitle,
-                style:
-                    new TextStyle(fontWeight: FontWeight.w700, fontSize: 20.0)),
-            subtitle: new Material(
-              // color: Theme.of(context).accentColor,
-              borderRadius: new BorderRadius.circular(8.0),
-              child: new Container(
-                margin:
-                    new EdgeInsets.symmetric(horizontal: 10.0, vertical: 4.0),
-                child: new Text(post.postDescription),
+  Widget postMediaFromDB() {
+    return FutureBuilder(
+      builder: (context, postMedia) {
+        if (!postMedia.hasData) {
+          //print('project snapshot data is: ${projectSnap.data}');
+          return Container();
+        }
+        return Container(
+          margin: new EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+          child: new Material(
+            elevation: 30.0,
+            shadowColor: Colors.black54,
+            color: Theme.of(context).disabledColor,
+            borderRadius: new BorderRadius.circular(6.0),
+            child: new Padding(
+              padding: new EdgeInsets.symmetric(vertical: 6.0),
+              child: new ListTile(
+                // leading: new Image.asset('res/${post.postImg}'),
+                leading: new Image.asset('assets/img/login_logo.png'),
+                title: new Text(post.postTitle,
+                    style: new TextStyle(
+                        fontWeight: FontWeight.w700, fontSize: 20.0)),
+                subtitle: new Material(
+                  // color: Theme.of(context).accentColor,
+                  borderRadius: new BorderRadius.circular(8.0),
+                  child: new Container(
+                    margin: new EdgeInsets.symmetric(
+                        horizontal: 10.0, vertical: 4.0),
+                    child: new Text(post.postDescription),
+                  ),
+                ),
+                trailing: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(postMedia.data.length.toString()),
+                    new IconButton(
+                      onPressed: () {},
+                      icon: new Icon(Icons.file_present,
+                          color: Theme.of(context).accentColor),
+                    ),
+                  ],
+                ),
               ),
             ),
-            // trailing: new IconButton(
-            //   onPressed: () {
-            //     DatabaseHelper.instance.deletePost(post.id);
-            //   },
-            //   icon:
-            //       new Icon(Icons.delete, color: Theme.of(context).primaryColor),
-            // ),
           ),
-        ),
-      ),
+        );
+      },
+      future: DatabaseHelper.instance.getPostMediaForPost(post.id),
     );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return postMediaFromDB();
   }
 }

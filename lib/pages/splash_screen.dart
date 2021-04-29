@@ -43,14 +43,14 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
         PageViewModel(
           title: "Post Covid 19 Updates",
           body:
-              "Instead of having to buy an entire share, invest any amount you want.",
+              "Create your posts, selecting media from the gallery",
           image: _buildImage('img1'),
           decoration: pageDecoration,
         ),
         PageViewModel(
           title: "View Covid 19 Updates",
           body:
-              "Download the Stockpile app and master the market with our mini-lesson.",
+              "Click on you post to view it in detail",
           image: _buildImage('img2'),
           decoration: pageDecoration,
         ),

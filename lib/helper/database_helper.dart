@@ -37,15 +37,19 @@ class DatabaseHelper {
 
   Future _onCreate(Database db, int version) {
     db.execute('''
-    
+      
     CREATE TABLE $_postsTable( $columnPostID INTEGER PRIMARY KEY,
     $columnTitle TEXT NOT NULL, $columnDescription TEXT NOT NULL );
+    
+    ''');
+    db.execute('''
     
     CREATE TABLE $_postsMedia( $columnMediaID INTEGER PRIMARY KEY,
     $columnMediaType TEXT NOT NULL, $columnMediaPath TEXT NOT NULL, $columnPostID INTEGER NOT NULL,
      FOREIGN KEY ($columnPostID)
         REFERENCES $_postsTable ($columnPostID) 
      );
+     
     ''');
   }
 
@@ -55,9 +59,27 @@ class DatabaseHelper {
         conflictAlgorithm: ConflictAlgorithm.replace);
   }
 
+  Future<Object> insertPostMedia(List<Map<String, dynamic>> rows) async {
+    Database db = await instance.database;
+    Batch batch = db.batch();
+
+    for (Map<String, dynamic> row in rows) {
+      batch.insert(_postsMedia, row,
+          conflictAlgorithm: ConflictAlgorithm.replace);
+    }
+
+    return await batch.commit(noResult: true);
+  }
+
   Future<List<Map<String, dynamic>>> getAllPosts() async {
     Database db = await instance.database;
     return await db.query(_postsTable);
+  }
+
+  Future<List<Map<String, dynamic>>> getPostMediaForPost(int id) async {
+    Database db = await instance.database;
+    return await db
+        .query(_postsMedia, where: '$columnPostID = ?', whereArgs: [id]);
   }
 
   Future updatePost(Map<String, dynamic> row) async {
@@ -69,7 +91,10 @@ class DatabaseHelper {
 
   Future deletePost(int id) async {
     Database db = await instance.database;
-    return await db
-        .delete(_postsTable, where: '$columnPostID = ?', whereArgs: [id]);
+    Batch batch = db.batch();
+    batch.delete(_postsTable, where: '$columnPostID = ?', whereArgs: [id]);
+    batch.delete(_postsMedia, where: '$columnPostID = ?', whereArgs: [id]);
+    return await batch.commit(noResult: true);
   }
+
 }
