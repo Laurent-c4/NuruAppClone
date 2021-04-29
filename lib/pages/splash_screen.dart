@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:nuru_clone_app/main.dart';
 
+import '../provider/theme_provider.dart';
 import 'home_page.dart';
 
 class OnBoardingPage extends StatefulWidget {
@@ -80,6 +81,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
       dotsDecorator: const DotsDecorator(
         size: Size(10.0, 10.0),
         color: Color(0xFFBDBDBD),
+        activeColor: AppThemes.snackBarDark,
         activeSize: Size(22.0, 10.0),
         activeShape: RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(25.0)),

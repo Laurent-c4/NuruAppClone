@@ -98,10 +98,10 @@ class ProfilePage extends StatelessWidget {
             backgroundColor: Theme.of(context).primaryIconTheme.color,
             child: CircleAvatar(
               radius: 44,
-              backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+              backgroundColor: Theme.of(context).accentColor,
               child: CircleAvatar(
-                child: Image.asset('assets/user1.png'),
-                backgroundColor: Colors.pink,
+                child: Image.asset('assets/user1.png',fit: BoxFit.contain),
+                backgroundColor: Theme.of(context).scaffoldBackgroundColor,
                 radius: 40,
               ),
             ),
@@ -129,7 +129,7 @@ class ProfilePage extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              buildCounters(context, '36', 'Posts'),
+              // buildCounters(context, '36', 'Posts'),
               // buildCounters(context, '3.5K', 'Following'),
               // buildCounters(context, '15K', 'Followers'),
             ],

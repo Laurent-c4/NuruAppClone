@@ -45,7 +45,7 @@ class PostItem extends StatelessWidget {
                             )),
                   );
                 },
-                leading: new Image.asset('assets/img/login_logo.png'),
+                  leading: new Image.asset('assets/img/video_placeholder.png'),
                 title: new Text(post.postTitle,
                     style: new TextStyle(
                         fontWeight: FontWeight.w700, fontSize: 20.0)),
